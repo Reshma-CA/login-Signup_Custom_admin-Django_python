@@ -1,0 +1,51 @@
+{% extends 'customadmin/theme.html' %}
+
+{% block bodyclass %}class="customerhome"{% endblock bodyclass %}
+{% block content %}
+
+
+
+<div class="container">
+    <h2><u>Customer Details</u> </h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Sl.NO</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Contact Number</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item  in contents  %}
+            <tr>
+                <td>{{item.id}}</td>
+                <td>{{item.username}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.phonenumber}}</td>
+                <td>{{item.address}}</td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div class="container">
+    <a href="{% url 'customerlogout' %}"><button class="btn btn-danger">Logout</button></a>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock content %}
+

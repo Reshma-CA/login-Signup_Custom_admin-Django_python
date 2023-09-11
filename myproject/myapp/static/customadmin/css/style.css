@@ -1,0 +1,31 @@
+.home{
+    background-image: url("https://images8.alphacoders.com/594/594870.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.adminlogin{
+    background-color: lightgreen;
+   
+}
+.adminlogin2
+{
+    background-image: url("https://img.freepik.com/free-photo/gorgeous-arrangement-flowers-wallpaper_23-2149057084.jpg?w=996&t=st=1692179870~exp=1692180470~hmac=e13b86b37346ac5ab143aa1d6edeb78bd652a74e950ca9129448a31770a7fdb3");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.customer
+{
+    background-image: url("https://images.unsplash.com/photo-1602934585418-f588bea4215c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80");
+    
+}
+.customerhome
+{
+    background-image: url("https://img.freepik.com/free-photo/baby-s-breath-flowers-pink-gerbera-flowers-blue-background_23-2148076554.jpg?w=996&t=st=1692181334~exp=1692181934~hmac=6b843784b467ca16a8ccebd7eea595512a80125fdb3b231e6285991c0df86e97");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.dashboard
+{
+    background-color: rgb(198, 126, 17);
+}

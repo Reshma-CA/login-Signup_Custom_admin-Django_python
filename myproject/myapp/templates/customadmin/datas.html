@@ -1,0 +1,213 @@
+{% extends 'customadmin/theme.html' %}
+
+{% block content %}
+<h1 class="container-fluid bg-success text-center" >Users</h1>
+<div class="container-fluid text-end">
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <form action="{% url 'search' %}" method="GET">{% csrf_token %}
+          <input name="search" type="text" class="form-control" id="search" placeholder="Search">
+          <button type="submit" class="btn btn-primary mt-3">Search</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-10">
+        <button class="btn btn-info text-end" data-bs-toggle="modal" data-bs-target="#addusers"> Add new user</button>
+
+      </div>
+    </div>
+  </div>
+  
+  </div>
+  
+</div>
+<div class="text-danger text-center m-4">{{editmsg1}}</div>
+<div class="text-danger text-center m-4">{{addmsg1}}</div>
+
+
+<!-- {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            <span class="text-danger">{{ message }}</span>
+        </div>
+    {% endfor %}
+{% endif %} -->
+
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-10 text-center">
+      <table class="table">
+        <thead>
+          <tr>
+            <!-- {% comment %} <th scope="col">Sl.No</th> {% endcomment %} -->
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in cr  %}
+          <tr>
+            <!-- {% comment %} <th scope="row">{{item.id}}</th> {% endcomment %} -->
+            <td>{{item.username}}</td>
+            <td>{{item.email}}</td>
+            <td> <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editdata-{{forloop.counter}}"> Edit </button></td>
+            <td> <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletedata-{{forloop.counter}}"> Delete</button></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+    </div>
+    
+
+  </div>
+  
+
+</div>
+
+
+
+  <!-- {% comment %} adding datas {% endcomment %}
+  {% comment %} <h3>ADD USERS</h3> {% endcomment %} -->
+
+
+<div class="modal" id="addusers">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Users </h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+
+      </div>
+      <div class="modal-body">
+
+        <form method="POST" action="{% url 'add' %}"> {% csrf_token %} 
+          <div class="form-group">
+            <label for="username">Name</label>
+            <input name="username" type="text" class="form-control" id="username" placeholder="Enter username">
+          </div>
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword">Password</label>
+            <input name="password" type="password" class="form-control" id="inputPassword" placeholder="Password">
+          </div>
+          <div class="form-group">
+            <label for="inputConfirmPassword">Confirm Password</label>
+            <input name="cpassword" type="password" class="form-control" id="inputConfirmPassword" placeholder="Confirm Password">
+          </div>
+          <button type="submit" class="btn btn-primary mt-3">Sign Up</button>
+          <!-- {{adderror}} -->
+          {{addmsg1}}
+          
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+{% comment %} EDIT USERS {% endcomment %}
+{% for item in cr  %}
+
+<div class="modal" id="editdata-{{forloop.counter}}">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" >Edit Users</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+    </div>
+      <div class="modal-content"> 
+         
+        <form class="p-5" method="POST" action="/update/{{item.id}}"> {% csrf_token %}
+          
+          <div class="form-group mt-2">
+            
+            <label for="username">Name</label>
+            <input value={{item.username}} name="username" type="text" class="form-control" id="username" placeholder="Enter username">
+          </div>
+          <div class="form-group mt-2">
+            <label for="email">Email address</label>
+            <input value={{item.email}} name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group mt-2">
+            <label for="inputPassword">Password</label>
+            <input name="password" type="password" class="form-control" id="inputPassword" placeholder="Password">
+          </div>
+          <div class="form-group mt-2">
+            <label for="inputConfirmPassword">Confirm Password</label>
+            <input name="cpassword" type="password" class="form-control" id="inputConfirmPassword" placeholder="Confirm Password">
+          </div>
+          <button type="submit" class="btn btn-primary mt-4">Update</button>
+        
+        </form>
+        
+      </div>
+
+    </div>
+
+    </div>
+    
+
+  </div>
+
+
+</div>
+
+{% endfor %}
+
+
+{% comment %} Delete Data {% endcomment %}
+{% for item in cr  %}
+
+<div class="modal" id="deletedata-{{forloop.counter}}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+         
+          <h5 class="modal-title">Delete User</h5>
+          <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>  
+          <div class="modal-body">
+            <form method="POST" action="/delete/{{item.id}}"> {% csrf_token %}
+              <label for=""> <h5>Are you sure you want to delete {{item.username}}'s datas</h5></label>
+              
+              <button type="submit" class="btn btn-primary">Delete</button>
+            
+            </form>
+
+          </div>
+  
+        </div>
+  
+      </div>
+
+    </div>
+    
+
+  </div>
+
+
+</div>
+
+{% endfor %}
+
+{% endblock content %}
+
+

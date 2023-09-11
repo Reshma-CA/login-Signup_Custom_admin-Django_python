@@ -1,0 +1,58 @@
+{% extends 'customadmin/theme.html' %}
+
+{% block title %}Dashboard of Myadmin{% endblock title %}
+
+{% block bodyclass %}class="customerhome" {% endblock bodyclass %}
+
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+    <a class="navbar-brand" href="#">Admin Dashboard</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <!-- <ul class="navbar-nav">
+      
+          
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'datas' %}">Users</a>
+            </li>
+        
+        </ul> -->
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container pt-4">
+    <div class="row">
+        <div class="col-md-6  ">
+            <h4><u>Authentication and Authorization</u> </h4>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ">
+                <h5><a class="text-decoration-none text-dark" href="{% url 'datas' %}">Users</a> </h5>
+            </div>        
+        </div>
+        <br><br><br>
+        <hr>
+        <br><br>
+        <div class="col-md-6  ">
+            <h4><u>Datas</u> </h4>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ">
+                <h5><a class="text-decoration-none text-dark" href="{% url 'datascustomers' %}">Customers</a> </h5>
+            </div> 
+    
+
+        </div>
+        
+    </div>
+
+</div>
+
+{% endblock content %}
+
